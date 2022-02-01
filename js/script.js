@@ -11,17 +11,21 @@
 // 1- quando si clicca su una bomba e finisce la partita, evitare che si possa cliccare su altre celle 
 // 2- quando si clicca su una bomba e finisce la partita, il software scopre tutte le bombe nascoste 
 
+// dichiaro il bottone play
 let button_play = document.getElementById("Play");
 
+// dichiaro il bottone reset
 let button_reset = document.getElementById("Reset");
 
+// dichiaro la costante per il div con ID griglia
 const elementi_griglia = document.getElementById('griglia');
 
-
+// eventi premento il bottone play
 button_play.addEventListener('click',
 
     function() {
 
+        // funzione per creare un elemento della griglia
         function crea_elemento_griglia() {
 
             var valore_selezionato = document.getElementById('Difficoltà').value;
@@ -44,17 +48,23 @@ button_play.addEventListener('click',
             return node;
         }
 
+        // creo una costante per uare la fuznione get_numero_box()
         const numero_box = get_numero_box();
 
+        // costante per numero massimo delle bombe 
         const numero_bombe = 16;
 
+        // costante per tenere traccia dei tentativi
         const tentativi = [];
         
+        // creo la costante bombe ed uso la fuznione genera_bombe
         const bombe = genera_bombe(numero_bombe, numero_box);
         console.log(bombe);
 
+        // reset della griglia
         elementi_griglia.innerHTML='';
         
+        // ciclo for per generare tutti i box della griglia in base alla difficoltà scelta
         for (let i = 1; i<=numero_box; i++) {
            
             const node = crea_elemento_griglia();
@@ -66,7 +76,7 @@ button_play.addEventListener('click',
             
         }
     
-
+        // funzione per gestire i click nella griglia
         function gestire_click() {
     
             this.classList.add('clicked');
@@ -85,6 +95,7 @@ button_play.addEventListener('click',
             console.log('numero tentativi = ' + tentativi);
         }
         
+        // funzione per terminare il gioco
         function termina_gioco() {
             // scorro gli elementi del dom
             const box_facile = document.getElementsByClassName('box-facile');
@@ -109,6 +120,7 @@ button_play.addEventListener('click',
           
 );
 
+// funzione per generare i numeri delle box in base alla difficoltà
 function get_numero_box() {
     var valore_selezionato = document.getElementById('Difficoltà').value;
     let numero_box;
@@ -122,6 +134,7 @@ function get_numero_box() {
     return numero_box;
 }
 
+// funzione per generare le bombe usando numeri random senza doppioni
 function genera_bombe(numero_bombe, Pnumero_box) {
     const bombe_generate = [];
     
@@ -136,12 +149,12 @@ function genera_bombe(numero_bombe, Pnumero_box) {
         return bombe_generate;
 }
 
+// funzione per generare numeri random
 function numero_random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-
-
+// bottone per il reset
 button_reset.addEventListener('click',
     function(){    
         button_reset = window.location.reload();
