@@ -1,0 +1,102 @@
+/* Regole generali */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body {
+    height: 100vh;
+    width: 100%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+/* Regole header */
+header{
+    height: 10%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+header h1{
+    color: #000006;
+    font-weight: bolder;
+}
+#Difficoltà{
+    width: 150px;
+}
+.scelta{
+    color: lightgray;
+}
+#Play, #Reset{
+    width: 100px;
+}
+
+
+/* Regole main */
+main{
+    height: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: lightgray;
+}
+.container {
+    width: 500px;
+    height: 500px;
+}
+#grid::after {
+    display: block;
+    content: "";
+    clear: both;
+}
+.box-facile{
+    border: solid 1px #fff;
+    width: calc(100% / 10);
+    height: calc(100% / 10);
+    float: left;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.box-medio{
+    border: solid 1px #fff;
+    width: calc(100% / 9);
+    height: calc(100% / 9);
+    float: left;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.box-difficile{
+    border: solid 1px #fff;
+    width: calc(100% / 7);
+    height: calc(100% / 7);
+    float: left;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.d-none{
+    display: none;
+}
+.clicked {
+    background-color: limegreen;
+    color: white;
+}
+
+
+/* Regole footer */
+footer{
+    height: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
