@@ -27,8 +27,8 @@ button_play.addEventListener('click',
 
         const numero_bombe = 16;
 
-        // const bombe = genera_bombe(numero_bombe, numero_box);
-        // console.log(bombe);
+        const bombe = genera_bombe(numero_bombe, numero_box);
+        console.log(bombe);
 
         elementi_griglia.innerHTML='';
         
@@ -76,7 +76,7 @@ button_play.addEventListener('click',
 function genera_bombe(numero_bombe, numero_box) {
     const bombe_generate = [];
     
-    while (bombe_generate.length <= numero_bombe) {
+    while (bombe_generate.length < numero_bombe) {
         const bomba = numero_random(1, numero_box);
         
         // se bombe_generate non --> ! include const bombe
