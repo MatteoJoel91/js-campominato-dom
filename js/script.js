@@ -80,7 +80,7 @@ function genera_bombe(numero_bombe, numero_box) {
         const bomba = numero_random(1, numero_box);
         
         // se bombe_generate non --> ! include const bombe
-        if (!bombe_generate.includes) {
+        if (!bombe_generate.includes(bomba)) {
             bombe_generate.push(bomba);
         }
     }
