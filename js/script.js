@@ -27,6 +27,9 @@ button_play.addEventListener('click',
 
         const numero_bombe = 16;
 
+        const tentativi = [];
+        
+
         const bombe = genera_bombe(numero_bombe, numero_box);
         console.log(bombe);
 
@@ -67,8 +70,7 @@ button_play.addEventListener('click',
             
             return node;
         }
-        
-        
+             
     }
           
 );
@@ -92,10 +94,19 @@ function numero_random(min, max) {
 }
 
 function gestire_click() {
-    this.classList.add('clicked');
-    // alert(this.innerHTML);
-    this.removeEventListener('click', gestire_click)
     
+    this.classList.add('clicked');
+
+    this.removeEventListener('click', gestire_click)
+
+    const cella = this.innerHTML;
+
+    if (bombe.includes(cella)) {
+        alert('fine del gioco');
+    }else{
+        tentativi.push(cella);
+    }
+    console.log('numero tentativi = ' + tentativi);
 }
 
 button_reset.addEventListener('click',
