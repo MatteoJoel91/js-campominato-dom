@@ -56,7 +56,10 @@ button_play.addEventListener('click',
 
         // costante per tenere traccia dei tentativi
         const tentativi = [];
+        console.log(tentativi);
         
+             
+
         // creo la costante bombe ed uso la fuznione genera_bombe
         const bombe = genera_bombe(numero_bombe, numero_box);
         console.log(bombe);
@@ -78,7 +81,7 @@ button_play.addEventListener('click',
     
         // funzione per gestire i click nella griglia
         function gestire_click() {
-    
+
             this.classList.add('clicked');
         
             this.removeEventListener('click', gestire_click)
@@ -92,19 +95,18 @@ button_play.addEventListener('click',
             }else{
                 tentativi.push(cella);
             }
-            console.log('numero tentativi = ' + tentativi);
         }
         
         // funzione per terminare il gioco
         function termina_gioco() {
-            // scorro gli elementi del dom
+            // scorro gli elementi del dom ed applico la classe bombe_rosse sulle bombe
             const box_facile = document.getElementsByClassName('box-facile');
             const box_medio = document.getElementsByClassName('box-medio');
             const box_difficile = document.getElementsByClassName('box-difficile');
 
            for ( let i = 0; i < box_facile.length; i++) {
                if (bombe.includes(parseInt(box_facile[i].innerHTML)))
-               box_facile[i].classList.add('bombe_rosse');  
+               box_facile[i].classList.add('bombe_rosse');               
             }
             for ( let i = 0; i < box_medio.length; i++) {
                 if (bombe.includes(parseInt(box_medio[i].innerHTML)))
@@ -114,7 +116,9 @@ button_play.addEventListener('click',
                 if (bombe.includes(parseInt(box_difficile[i].innerHTML)))
                 box_difficile[i].classList.add('bombe_rosse');  
             }
-           
+            console.log('Peccato hai perso dopo ' + tentativi.length + ' tentativo o tentativi');
+            // alert('Peccato hai perso dopo ' + tentativi.length + ' tentativo o tentativi');
+            // window.location.reload();
         }
     }
           
