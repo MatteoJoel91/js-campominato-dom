@@ -18,50 +18,23 @@ let button_reset = document.getElementById("Reset");
 const elementi_griglia = document.getElementById('griglia');
 
 
-
 button_play.addEventListener('click',
 
     function() {
 
-        let numero_box = 100;
-
-        const numero_bombe = 16;
-
-        const tentativi = [];
-        
-
-        const bombe = genera_bombe(numero_bombe, numero_box);
-        console.log(bombe);
-
-        elementi_griglia.innerHTML='';
-        
-        for (let i = 1; i<=numero_box; i++) {
-           
-            const node = crea_griglia();
-            node.innerHTML = i;
-        
-            node.addEventListener('click', gestire_click );
-        
-            elementi_griglia.appendChild(node);
-            
-        }
-    
-        function crea_griglia() {
+        function crea_elemento_griglia() {
 
             var valore_selezionato = document.getElementById('Difficoltà').value;
             document.getElementById("griglia").style.border = "solid 1px #fff";
-            const node = document.createElement('div');
+            const node = document.createElement('div');           
         
             if (valore_selezionato == 'Facile') {
-                numero_box = 100;
                 node.classList.add('box-facile');
         
             }else if(valore_selezionato == 'Medio'){
-                numero_box = 81;
                 node.classList.add('box-medio');
                 
             }else if(valore_selezionato == 'Difficile'){
-                numero_box = 49;
                 node.classList.add('box-difficile');
             }else{
                 node.classList.add('d-none');
@@ -70,6 +43,29 @@ button_play.addEventListener('click',
             
             return node;
         }
+
+        const numero_box = get_numero_box();
+
+        const numero_bombe = 16;
+
+        const tentativi = [];
+        
+        const bombe = genera_bombe(numero_bombe, numero_box);
+        console.log(bombe);
+
+        elementi_griglia.innerHTML='';
+        
+        for (let i = 1; i<=numero_box; i++) {
+           
+            const node = crea_elemento_griglia();
+            node.innerHTML = i;
+        
+            node.addEventListener('click', gestire_click );
+        
+            elementi_griglia.appendChild(node);
+            
+        }
+    
 
         function gestire_click() {
     
@@ -92,11 +88,24 @@ button_play.addEventListener('click',
           
 );
 
-function genera_bombe(numero_bombe, numero_box) {
+function get_numero_box() {
+    var valore_selezionato = document.getElementById('Difficoltà').value;
+    let numero_box;
+    if (valore_selezionato == 'Facile') {
+        numero_box=100;
+    }else if(valore_selezionato == 'Medio'){
+        numero_box=81; 
+    }else{
+        numero_box=49;
+    }
+    return numero_box;
+}
+
+function genera_bombe(numero_bombe, Pnumero_box) {
     const bombe_generate = [];
     
     while (bombe_generate.length < numero_bombe) {
-        const bomba = numero_random(1, numero_box);
+        const bomba = numero_random(1, Pnumero_box);
         
         // se bombe_generate non --> ! include const bombe
         if (!bombe_generate.includes(bomba)) {
