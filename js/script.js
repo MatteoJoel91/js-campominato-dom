@@ -70,7 +70,24 @@ button_play.addEventListener('click',
             
             return node;
         }
-             
+
+        function gestire_click() {
+    
+            this.classList.add('clicked');
+        
+            this.removeEventListener('click', gestire_click)
+        
+            const cella = parseInt(this.innerHTML);
+            console.log ('elenco delle bombe '  + bombe);
+            console.log ('ho cliccato sulla cella '  + cella);
+            
+            if (bombe.includes(cella)) {
+                alert('fine del gioco');
+            }else{
+                tentativi.push(cella);
+            }
+            console.log('numero tentativi = ' + tentativi);
+        }    
     }
           
 );
@@ -93,21 +110,7 @@ function numero_random(min, max) {
     return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function gestire_click() {
-    
-    this.classList.add('clicked');
 
-    this.removeEventListener('click', gestire_click)
-
-    const cella = this.innerHTML;
-
-    if (bombe.includes(cella)) {
-        alert('fine del gioco');
-    }else{
-        tentativi.push(cella);
-    }
-    console.log('numero tentativi = ' + tentativi);
-}
 
 button_reset.addEventListener('click',
     function(){    
