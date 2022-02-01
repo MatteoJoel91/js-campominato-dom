@@ -74,16 +74,37 @@ button_play.addEventListener('click',
             this.removeEventListener('click', gestire_click)
         
             const cella = parseInt(this.innerHTML);
-            console.log ('elenco delle bombe '  + bombe);
-            console.log ('ho cliccato sulla cella '  + cella);
+            
+            console.log ('Hai cliccato sulla cella '  + cella);
             
             if (bombe.includes(cella)) {
-                alert('fine del gioco');
+                termina_gioco();
             }else{
                 tentativi.push(cella);
             }
             console.log('numero tentativi = ' + tentativi);
-        }    
+        }
+        
+        function termina_gioco() {
+            // scorro gli elementi del dom
+            const box_facile = document.getElementsByClassName('box-facile');
+            const box_medio = document.getElementsByClassName('box-medio');
+            const box_difficile = document.getElementsByClassName('box-difficile');
+
+           for ( let i = 0; i < box_facile.length; i++) {
+               if (bombe.includes(parseInt(box_facile[i].innerHTML)))
+               box_facile[i].classList.add('bombe_rosse');  
+            }
+            for ( let i = 0; i < box_medio.length; i++) {
+                if (bombe.includes(parseInt(box_medio[i].innerHTML)))
+                box_medio[i].classList.add('bombe_rosse');  
+            }
+            for ( let i = 0; i < box_difficile.length; i++) {
+                if (bombe.includes(parseInt(box_difficile[i].innerHTML)))
+                box_difficile[i].classList.add('bombe_rosse');  
+            }
+           
+        }
     }
           
 );

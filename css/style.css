@@ -83,6 +83,10 @@ main{
     align-items: center;
     cursor: pointer;
 }
+.bombe_rosse{
+    background-color: red !important;
+    color: white;
+}
 .d-none{
     display: none;
 }
