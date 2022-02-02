@@ -48,7 +48,7 @@ button_play.addEventListener('click',
             return node;
         }
 
-        // creo una costante per uare la fuznione get_numero_box()
+        // creo una costante per usare la fuznione get_numero_box()
         const numero_box = get_numero_box();
 
         // costante per numero massimo delle bombe 
@@ -84,41 +84,48 @@ button_play.addEventListener('click',
 
             this.classList.add('clicked');
         
-            this.removeEventListener('click', gestire_click)
+            this.removeEventListener('click', gestire_click);
         
             const cella = parseInt(this.innerHTML);
             
             console.log ('Hai cliccato sulla cella '  + cella);
             
             if (bombe.includes(cella)) {
-                termina_gioco();
+                termina_gioco(tentativi, 'Peccato hai perso dopo ' + tentativi.length + ' tentativo - tentativi');
             }else{
                 tentativi.push(cella);
+            }
+
+            if (tentativi.length >= (numero_box - numero_bombe)) {
+                termina_gioco(tentativi, 'Hai vinto!!');
             }
         }
         
         // funzione per terminare il gioco
-        function termina_gioco() {
+        function termina_gioco(array_tentativi, messaggio) {
             // scorro gli elementi del dom ed applico la classe bombe_rosse sulle bombe
             const box_facile = document.getElementsByClassName('box-facile');
             const box_medio = document.getElementsByClassName('box-medio');
             const box_difficile = document.getElementsByClassName('box-difficile');
 
-           for ( let i = 0; i < box_facile.length; i++) {
+            for ( let i = 0; i < box_facile.length; i++) {
                if (bombe.includes(parseInt(box_facile[i].innerHTML)))
-               box_facile[i].classList.add('bombe_rosse');               
+               box_facile[i].classList.add('bombe_rosse');
+               box_facile[i].removeEventListener('click', gestire_click);             
             }
             for ( let i = 0; i < box_medio.length; i++) {
                 if (bombe.includes(parseInt(box_medio[i].innerHTML)))
-                box_medio[i].classList.add('bombe_rosse');  
+                box_medio[i].classList.add('bombe_rosse');
+                box_medio[i].removeEventListener('click', gestire_click);
             }
             for ( let i = 0; i < box_difficile.length; i++) {
                 if (bombe.includes(parseInt(box_difficile[i].innerHTML)))
-                box_difficile[i].classList.add('bombe_rosse');  
+                box_difficile[i].classList.add('bombe_rosse');
+                box_difficile[i].removeEventListener('click', gestire_click);
             }
-            console.log('Peccato hai perso dopo ' + tentativi.length + ' tentativo o tentativi');
-            // alert('Peccato hai perso dopo ' + tentativi.length + ' tentativo o tentativi');
-            // window.location.reload();
+            
+            alert(messaggio);
+
         }
     }
           
